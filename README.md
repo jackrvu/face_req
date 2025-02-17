@@ -14,13 +14,13 @@ Before you begin, ensure you have met the following requirements:
 
 1. **Clone or download the repository**:
    ```bash
-   git clone https://github.com/yourusername/face_req_site.git
-   cd face_req_site
+   git clone https://github.com/jackrvu/face_req.git
+   cd face_req
    ```
 
 2. **Install required Python packages**:
    ```bash
-   pip install flask numpy opencv-python insightface pillow werkzeug
+   pip install -r requirements.txt
    ```
 
 3. **Create required directories**:
@@ -60,4 +60,5 @@ Before you begin, ensure you have met the following requirements:
 - Processes images using OpenCV for visualization
 - Built with Flask for the web framework
 
-## File Structure
+
+

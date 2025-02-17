@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recognition Results</title>
+</head>
+<body>
+    <h1>Recognition Results</h1>
+
+    {% if annotated_img %}
+        <!-- If the annotated image is available, display it -->
+        <img src="{{ url_for('annotated_image') }}" alt="Annotated Image" />
+    {% else %}
+        <p>No annotated image available.</p>
+    {% endif %}
+
+    <h2>Predictions:</h2>
+    {% if predictions and predictions|length > 0 %}
+        <ul>
+        {% for p in predictions %}
+            <li>
+                Name: {{ p.detected_name }}
+                | Distance: {{ p.distance }}
+                | Confidence: {{ p.confidence }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No faces detected or recognized.</p>
+    {% endif %}
+
+    <p><a href="{{ url_for('index') }}">Back to Upload</a></p>
+</body>
+</html>

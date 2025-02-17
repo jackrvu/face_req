@@ -1,0 +1,6 @@
+Flask==2.2.0
+requests==2.31.0
+numpy==1.23.0
+opencv-python==4.7.0.72
+insightface==0.7.3     # or a version you trust
+onnxruntime==1.14.1    # for CPU

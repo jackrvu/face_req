@@ -1,0 +1,178 @@
+<!-- Results Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f7fa;
+            color: #2d3748;
+            min-height: 100vh;
+            padding: 1rem 0; /* Reduced padding */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        h1, h2 {
+            color: #1a365d;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem; /* Reduced margin */
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem; /* Reduced margin */
+        }
+
+        p {
+            margin-bottom: 1rem; /* Reduced margin */
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .image-container {
+            background-color: white;
+            padding: 0.5rem; /* Reduced padding */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 1.5rem 0; /* Reduced margin */
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 4px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem; /* Reduced gap */
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .custom-file-upload {
+            display: block;
+            background-color: #dc143c;
+            color: white;
+            padding: 0.75rem 1rem; /* Increased padding */
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #2d3748;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        button[type="submit"] {
+            background-color: #dc143c;
+            color: white;
+            padding: 0.5rem 1rem; /* Reduced padding */
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #dc143c;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Results</h1>
+        <p>Here's your processed image with detected faces:</p>
+        <div class="results-container">
+            <div class="image-container">
+                <img src="{{ image_url }}" alt="Processed Image">
+                <div class="text-box">
+                    <p>Detected faces:</p>
+                    <textarea readonly rows="3" class="names-display">{{ names|urldecode if names else 'No faces detected' }}</textarea>
+                </div>
+
+                <style>
+                    .text-box {
+                        margin-top: 15px;
+                        text-align: center;
+                    }
+                    .names-display {
+                        width: 100%;
+                        padding: 10px;
+                        border-radius: 5px;
+                        border: 1px solid #ccc;
+                        background-color: #f8f8f8;
+                        resize: none;
+                    }
+                </style>
+            </div>
+        </div>
+        
+        <style>
+            .results-container {
+                margin: 20px;
+            }
+            
+            .names-container {
+                margin-top: 15px;
+            }
+            
+            .face-name {
+                padding: 10px;
+                margin: 5px;
+                background-color: #f0f0f0;
+                border-radius: 5px;
+                display: inline-block;
+            }
+        </style>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="image" class="custom-file-upload">
+            Choose Image
+            <input type="file" name="image" id="image" accept="image/*" required onchange="this.form.submit()">
+            </label>
+        </form>
+    </div>
+</body>
+</html>
